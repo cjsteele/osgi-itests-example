@@ -1,0 +1,168 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.bitbybit</groupId>
+    <artifactId>bitbybit-root</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>Parent</name>
+
+    <description>.</description>
+
+    <properties>
+        <!-- Base Settings -->
+        <project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
+        <!-- Dependency versions -->
+        <hamcrest.version>1.1</hamcrest.version>
+        <jai.version>1.1.3</jai.version>
+        <junit.version>4.12</junit.version>
+        <karaf.version>3.0.2</karaf.version>
+        <osgi.version>5.0.0</osgi.version>
+        <pax.exam.version>4.4.0</pax.exam.version>
+        <pax.url.aether.version>2.1.0</pax.url.aether.version>
+        <felix.framework.version>4.4.1</felix.framework.version>
+        <servicemix.javaxinject.version>1_2</servicemix.javaxinject.version>
+        <lifecyclemapping.version>1.0.0</lifecyclemapping.version>
+        <karaf-maven-plugin.version>3.0.1</karaf-maven-plugin.version>
+        <!-- do not increase mockito due to https://code.google.com/p/powermock/issues/detail?id=524 -->
+        <mockito.version>1.9.5</mockito.version>
+        <slf4j.version>1.7.2</slf4j.version>
+        <!-- maven plugins -->
+        <mvn.assembly.plugin.version>2.5.2</mvn.assembly.plugin.version>
+        <mvn.bundle.plugin.version>2.5.3</mvn.bundle.plugin.version>
+        <mvn.resources.plugin.version>2.7</mvn.resources.plugin.version>
+        <mvn.surefire.plugin.version>2.14</mvn.surefire.plugin.version>
+        <mvn.depends.plugin.version>1.2</mvn.depends.plugin.version>
+        <!-- Miscellaneous properties -->
+        <jdk.version>1.8</jdk.version>
+    </properties>
+
+    <modules>
+        <module>consumer-api</module>
+        <module>consumer</module>
+        <module>producer-api</module>
+        <module>producer</module>
+		<module>feature</module>
+		<module>karaf-assembly</module>
+		<module>karaf-itests</module>
+        <module>felix-itests</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.osgi</groupId>
+                <artifactId>org.osgi.core</artifactId>
+                <version>${osgi.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.osgi</groupId>
+                <artifactId>org.osgi.compendium</artifactId>
+                <version>${osgi.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-log4j12</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-core</artifactId>
+                <version>${mockito.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-all</artifactId>
+                <version>${mockito.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.ops4j.pax.exam</groupId>
+                <artifactId>pax-exam</artifactId>
+                <version>${pax.exam.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.ops4j.pax.exam</groupId>
+                <artifactId>pax-exam-junit4</artifactId>
+                <version>${pax.exam.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.ops4j.pax.exam</groupId>
+                <artifactId>pax-exam-container-forked</artifactId>
+                <version>${pax.exam.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.ops4j.pax.exam</groupId>
+                <artifactId>pax-exam-container-karaf</artifactId>
+                <version>${pax.exam.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.ops4j.pax.exam</groupId>
+                <artifactId>pax-exam-link-mvn</artifactId>
+                <version>${pax.exam.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.ops4j.pax.url</groupId>
+                <artifactId>pax-url-aether</artifactId>
+                <version>${pax.url.aether.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>org.apache.felix.framework</artifactId>
+                <version>${felix.framework.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.servicemix.bundles</groupId>
+                <artifactId>org.apache.servicemix.bundles.javax-inject</artifactId>
+                <version>${servicemix.javax-inject.version}</version>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version>${mvn.assembly.plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.felix</groupId>
+                    <artifactId>maven-bundle-plugin</artifactId>
+                    <version>${mvn.bundle.plugin.version}</version>
+                    <extensions>true</extensions>
+                    <configuration>
+                        <instructions>
+                            <BundleSymbolicName>${project.artifactId}</BundleSymbolicName>
+                        </instructions>
+                        <wrapImportPackage>false</wrapImportPackage>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>${mvn.resources.plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.karaf.tooling</groupId>
+                    <artifactId>karaf-maven-plugin</artifactId>
+                    <version>${karaf-maven-plugin.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+</project>
+

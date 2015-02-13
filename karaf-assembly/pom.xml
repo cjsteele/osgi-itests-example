@@ -1,0 +1,59 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.bitbybit</groupId>
+        <artifactId>bitbybit-root</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>org.bitbybit.karaf.assembly</artifactId>
+    <packaging>karaf-assembly</packaging>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.karaf.features</groupId>
+            <artifactId>framework</artifactId>
+            <version>${karaf.version}</version>
+            <type>kar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.karaf.features</groupId>
+            <artifactId>standard</artifactId>
+            <version>${karaf.version}</version>
+            <classifier>features</classifier>
+            <type>xml</type>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.bitbybit</groupId>
+            <version>${project.version}</version>
+			<artifactId>org.bitbybit.demo.feature</artifactId>                                                                  
+            <classifier>features</classifier>
+            <type>xml</type>
+            <scope>runtime</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.karaf.tooling</groupId>
+                <artifactId>karaf-maven-plugin</artifactId>
+                <extensions>true</extensions>
+                <configuration>
+                    <bootFeatures>
+                        <feature>standard</feature>
+                        <feature>management</feature>
+                    </bootFeatures>
+                    <installedFeatures>
+                        <feature>osgi-demo-api</feature>
+                        <feature>osgi-demo-consumer</feature>
+                        <feature>osgi-demo-producer</feature>
+                    </installedFeatures>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

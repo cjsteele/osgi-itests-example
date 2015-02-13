@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<features name="osgi-demo-${project.version}"
+          xmlns="http://karaf.apache.org/xmlns/features/v1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://karaf.apache.org/xmlns/features/v1.0.0
+                              http://karaf.apache.org/xmlns/features/v1.0.0 ">
+
+    <feature name="osgi-demo-api" version="${project.version}" description="OSGi Demo API Feature">
+        <bundle start-level="80">mvn:org.bitbybit/org.bitbybit.consumer.api/${project.version}</bundle>
+        <bundle start-level="80">mvn:org.bitbybit/org.bitbybit.producer.api/${project.version}</bundle>
+    </feature>
+
+    <feature name="osgi-demo-consumer" version="${project.version}" description="OSGi Demo Consumer">
+        <bundle start-level="85">mvn:org.bitbybit/org.bitbybit.consumer.impl/${project.version}</bundle>
+    </feature>
+
+    <feature name="osgi-demo-producer" version="${project.version}" description="OSGi Demo Producer">
+        <bundle start-level="85">mvn:org.bitbybit/org.bitbybit.producer.impl/${project.version}</bundle>
+    </feature>
+</features>

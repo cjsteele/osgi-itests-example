@@ -1,0 +1,7 @@
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0">
+    <bean id="consumer"
+          class="org.bitbybit.consumer.impl.ConsumerImpl"
+          init-method="init"
+          destroy-method="destroy" />
+    <service id="consumerService" interface="org.bitbybit.consumer.api.Consumer" ref="consumer" />
+</blueprint>
