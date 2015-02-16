@@ -7,8 +7,8 @@ Example project containing a simple Pax Exam test configuration for Apache Felix
   * Run "mvn install" from the project's root directory
 
 ## Versions
-OSGi 5.0.0
-Karaf 3.0.2
+* OSGi 5.0.0
+* Karaf 3.0.2
 
 ## Project structure
 
